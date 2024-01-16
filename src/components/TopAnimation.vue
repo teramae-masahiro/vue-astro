@@ -15,7 +15,7 @@
         <a class="absolute text-white bottom-5 right-8 text-lg font-bold self-start" href="#" @click="nextCard">
           <p class="next-btn text-xl">Next</p>
         </a>
-        <img class="w-full object-cover" :src="cards[currentNum].photo" alt="Card Image" />
+        <img class="w-full object-cover" :src="cards[currentNum].photo" alt="Card Image" :key="cards[currentNum].id/>
       </div>
     </div>
   </section>
