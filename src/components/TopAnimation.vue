@@ -29,18 +29,19 @@ import gsap from "gsap";
 const cards = reactive(worksDetail);
 let currentNum = ref(0);
 const playFowrd = () => {
-  currentNum.value++;
   let tl = gsap.timeline({
     defaults: {
       duration: 0.7,
       ease: "sine.out",
     },
-
     onComplete: () => {
+      currentNum.value++;
       if (currentNum.value >= cards.length) {
         currentNum.value = 0;
       }
-      playreverse();
+      setTimeout(() => {
+        playreverse();
+      }, 3000);
     },
   });
   tl.to(".mask-1", {
