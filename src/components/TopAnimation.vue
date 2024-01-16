@@ -35,11 +35,11 @@ const playFowrd = () => {
       ease: "sine.out",
     },
     onComplete: () => {
-      playreverse();
       currentNum.value++;
       if (currentNum.value >= cards.length) {
         currentNum.value = 0;
       }
+      playreverse();
     },
   });
   tl.to(".mask-1", {
@@ -139,9 +139,7 @@ const nextCard = () => {
   clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
 }
 .card-info a {
-
   color: var(--dark-green);
-
 }
 .card-info a:hover {
   transform: translateX(5px);
@@ -169,8 +167,9 @@ const nextCard = () => {
   z-index: 5;
   background: var(--white);
 }
-.next-btn,.detail-btn {
+.next-btn,
+.detail-btn {
   color: var(--dark-green);
-  font-style:italic;
+  font-style: italic;
 }
 </style>
