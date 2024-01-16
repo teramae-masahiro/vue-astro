@@ -15,7 +15,7 @@
         <a class="absolute text-white bottom-5 right-8 text-lg font-bold self-start" href="#" @click="nextCard">
           <p class="next-btn text-xl">Next</p>
         </a>
-        <img :key="cards[currentNum].id" class="w-full object-cover" :src="cards[currentNum].photo" alt="Card Image" />
+        <img :key="cards[currentNum].id"  class="w-full object-cover" :src="cards[currentNum].photo" alt="Card Image" />
       </div>
     </div>
   </section>
@@ -34,17 +34,12 @@ const playFowrd = () => {
       duration: 0.7,
       ease: "sine.out",
     },
-    onStart: () => {
+    
+    onComplete: () => {
       currentNum.value++;
       if (currentNum.value >= cards.length) {
         currentNum.value = 0;
       }
-    },
-    onComplete: () => {
-      // currentNum.value++;
-      // if (currentNum.value >= cards.length) {
-      //   currentNum.value = 0;
-      // }
       playreverse();
     },
   });
