@@ -15,7 +15,7 @@
         <a class="absolute text-white bottom-5 right-8 text-lg font-bold self-start" href="#" @click="nextCard">
           <p class="next-btn text-xl">Next</p>
         </a>
-        <img class="w-full object-cover" :src="cards[currentNum].photo" alt="Card Image" />
+        <img @load="onImageLoaded"  class="w-full object-cover" :src="cards[currentNum].photo" alt="Card Image" />
       </div>
     </div>
   </section>
@@ -26,6 +26,9 @@ import { reactive, ref } from "vue";
 import { worksDetail } from "../data/detail";
 import gsap from "gsap";
 
+const onImageLoaded = () => {
+  playreverse();
+};
 const cards = reactive(worksDetail);
 let currentNum = ref(0);
 const playFowrd = () => {
@@ -39,10 +42,10 @@ const playFowrd = () => {
       if (currentNum.value >= cards.length) {
         currentNum.value = 0;
       }
-      setTimeout(() => {
-        playreverse();
-      }, 3000);
-    },
+    //   setTimeout(() => {
+    //     playreverse();
+    //   }, 3000);
+    // },
   });
   tl.to(".mask-1", {
     yPercent: 100,
