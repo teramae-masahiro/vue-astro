@@ -42,11 +42,8 @@ const playFowrd = () => {
       if (currentNum.value >= cards.length) {
         currentNum.value = 0;
       }
-  //     setTimeout(() => {
-  //       playreverse();
-  //     }, 3000);
-  //   },
-  // });
+    },
+  });
   tl.to(".mask-1", {
     yPercent: 100,
     scaleY: 1.4,
