@@ -15,7 +15,7 @@
         <a class="absolute text-white bottom-5 right-8 text-lg font-bold self-start" href="#" @click="nextCard">
           <p class="next-btn text-xl">Next</p>
         </a>
-        <img  class="w-full object-cover" :src="cards[currentNum].photo" alt="Card Image" />
+        <img class="w-full object-cover" :src="cards[currentNum].photo" alt="Card Image" />
       </div>
     </div>
   </section>
@@ -29,6 +29,7 @@ import gsap from "gsap";
 const cards = reactive(worksDetail);
 let currentNum = ref(0);
 const playFowrd = () => {
+  currentNum.value++;
   let tl = gsap.timeline({
     defaults: {
       duration: 0.7,
@@ -36,7 +37,6 @@ const playFowrd = () => {
     },
 
     onComplete: () => {
-      currentNum.value++;
       if (currentNum.value >= cards.length) {
         currentNum.value = 0;
       }
