@@ -7,7 +7,7 @@ export function getStaticPaths() {
     }))
 }
 const { id } = Astro.params;
-const currentUrl = `../${worksDetail[id].photo}`;
+const currentUrl = `../../${worksDetail[id].photo}`;
 ---
 
 <Layout title="Works Detail">
