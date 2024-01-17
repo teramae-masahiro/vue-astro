@@ -1,7 +1,7 @@
 <template>
   <section class="max-w-4xl mx-auto px-5">
     <p class="num">{{ cards[currentNum].id + 1 }} / {{ cards.length }}</p>
-    <div class="card grid grid-cols-1 md:grid-cols-2 auto-rows-auto bg-white mx-auto">
+    <div class="card grid grid-cols-1 md:grid-cols-2 auto-rows-auto bg-white mx-auto aspect-h-1">
       <div class="card-info grid grid-rows-3 p-4 gap-4">
         <h2 class="text-xl" id="card-info-title">{{ cards[currentNum].title }}</h2>
         <p class="text-sm" id="card-info-desc">{{ cards[currentNum].description }}</p>
