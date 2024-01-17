@@ -1,7 +1,7 @@
 <template>
   <section class="max-w-4xl mx-auto px-5">
     <p class="num">{{ cards[currentNum].id + 1 }} / {{ cards.length }}</p>
-    <div class="card grid grid-cols-1 md:grid-cols-2 auto-rows-auto bg-white mx-auto aspect-h-1">
+    <div class="card grid grid-cols-1 md:grid-cols-2 auto-rows-auto bg-white mx-auto">
       <div class="card-info grid grid-rows-3 p-4 gap-4">
         <h2 class="text-xl" id="card-info-title">{{ cards[currentNum].title }}</h2>
         <p class="text-sm" id="card-info-desc">{{ cards[currentNum].description }}</p>
@@ -133,6 +133,7 @@ const onImageLoaded = () => {
 }
 .card {
   box-shadow: rgba(255, 255, 255, 0.1) 0px 1px 1px 0px inset, rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+  aspect-ratio : 2/1;
 }
 .card-info h2 {
   color: var(--dark-green);
