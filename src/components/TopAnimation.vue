@@ -15,7 +15,7 @@
         <button class="absolute text-white bottom-5 right-8 text-lg font-bold self-start" @click="nextCard">
           <span class="next-btn text-xl">Next</span>
         </button>
-        <img class="w-full object-cover" :src="cards[currentNum].photo" :key="cards[currentNum].id" :alt="cards[currentNum].title"  />
+        <img @load="onImageLoaded" class="w-full object-cover" :src="cards[currentNum].photo" :key="cards[currentNum].id" :alt="cards[currentNum].title"  />
       </div>
     </div>
   </section>
@@ -35,7 +35,7 @@ const playFowrd = () => {
       ease: "sine.out",
     },
     onComplete: () => {
-      playreverse();
+      // playreverse();
       currentNum.value++;
       if (currentNum.value >= cards.length) {
         currentNum.value = 0;
@@ -121,7 +121,7 @@ const nextCard = () => {
   playFowrd();
 };
 const onImageLoaded = () => {
-  playreverse();
+  setTimeout((()=>playreverse()),100)
 };
 </script>
 
