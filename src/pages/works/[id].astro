@@ -1,6 +1,6 @@
 ---
-import { worksDetail } from "../data/detail";
-import Layout from "../layouts/Layout.astro"
+import { worksDetail } from "../../data/detail";
+import Layout from "../../layouts/Layout.astro"
 export function getStaticPaths() {
   return worksDetail.map(card =>  ({
         params: { id: card.id }

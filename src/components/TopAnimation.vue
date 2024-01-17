@@ -5,17 +5,17 @@
       <div class="card-info grid grid-rows-3 p-4 gap-4">
         <h2 class="text-xl" id="card-info-title">{{ cards[currentNum].title }}</h2>
         <p class="text-sm" id="card-info-desc">{{ cards[currentNum].description }}</p>
-        <a class="grid grid-cols-[max-content_20px] items-center self-center justify-self-end transform transition-transform duration-300 ease-in-out" :href="cards[currentNum].id">
+        <a class="grid grid-cols-[max-content_20px] items-center self-center justify-self-end transform transition-transform duration-300 ease-in-out" :href="`/works/${cards[currentNum].id}`">
           <p class="detail-btn text-xl">More Detail</p>
         </a>
       </div>
       <div class="card-photo relative overflow-hidden">
         <div class="mask-1 mask absolute top-0 left-0 transform -translate-y-full h-full w-1/2"></div>
         <div class="mask-2 mask absolute top-0 right-0 transform translate-y-full h-full w-1/2"></div>
-        <a class="absolute text-white bottom-5 right-8 text-lg font-bold self-start" href="#" @click="nextCard">
-          <p class="next-btn text-xl">Next</p>
-        </a>
-        <img @load="onImageLoaded"  class="w-full object-cover" :src="cards[currentNum].photo" :key="[currentNum].id" alt="Card Image" />
+        <button class="absolute text-white bottom-5 right-8 text-lg font-bold self-start" @click="nextCard">
+          <span class="next-btn text-xl">Next</span>
+        </button>
+        <img @load="onImageLoaded" class="w-full object-cover" :src="cards[currentNum].photo" :key="cards[currentNum].id" :alt="cards[currentNum].title"  />
       </div>
     </div>
   </section>
@@ -25,7 +25,6 @@
 import { reactive, ref } from "vue";
 import { worksDetail } from "../data/detail";
 import gsap from "gsap";
-
 
 const cards = reactive(worksDetail);
 let currentNum = ref(0);
@@ -158,12 +157,12 @@ const onImageLoaded = () => {
   z-index: 0;
   clip-path: polygon(100% 60%, 60% 100%, 100% 100%);
 }
-.card-photo a {
+.card-photo button {
   color: var(--white);
   transform: translateX(0px);
   transition: transform 0.3s ease-in-out;
 }
-.card-photo a:hover {
+.card-photo button:hover {
   transform: translateX(5px);
 }
 .card-photo .mask {
