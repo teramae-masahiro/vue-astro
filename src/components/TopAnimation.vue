@@ -2,7 +2,7 @@
   <section class="max-w-4xl mx-auto px-5">
     <p class="num">{{ cards[currentNum].id + 1 }} / {{ cards.length }}</p>
     <div class="grid">
-      <button class="text-lg font-bold place-self-end " @click="nextCard">
+      <button class="text-lg font-bold place-self-end" @click="nextCard">
         <span class="next text-xl">Next >></span>
       </button>
     </div>
@@ -128,6 +128,35 @@ const nextCard = () => {
 const onImageLoaded = () => {
   setTimeout(() => playreverse(), 100);
 };
+
+let startX = 0;
+let endX = 0;
+
+const handleTouchStart = (event) => {
+  startX = event.touches[0].clientX;
+};
+
+const handleTouchMove = (event) => {
+  endX = event.touches[0].clientX;
+};
+
+const handleTouchEnd = () => {
+  if (startX - endX > 50) {
+    nextCard();
+  } 
+};
+
+onMounted(() => {
+  window.addEventListener("touchstart", handleTouchStart);
+  window.addEventListener("touchmove", handleTouchMove);
+  window.addEventListener("touchend", handleTouchEnd);
+});
+
+onUnmounted(() => {
+  window.removeEventListener("touchstart", handleTouchStart);
+  window.removeEventListener("touchmove", handleTouchMove);
+  window.removeEventListener("touchend", handleTouchEnd);
+});
 </script>
 
 <style scoped>
