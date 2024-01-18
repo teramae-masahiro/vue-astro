@@ -5,12 +5,44 @@ const name = ref("");
 const email = ref("");
 const message = ref("");
 const submitted = ref(false);
+const emailError = ref("");
+
+const validateEmail = () => {
+  const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}]))$/;
+  return re.test(String(email.value).toLowerCase());
+};
+
+
 
 const handleSubmit = () => {
-  // フォーム送信後の処理
-  submitted.value = true;
-  // ここで他の任意の処理を追加
+  let isValid = true;
+
+  // 名前のバリデーション
+  if (name.value.trim() === '') {
+    // エラーメッセージを設定
+    isValid = false;
+  }
+
+  // メールアドレスのバリデーション
+  if (!validateEmail()) {
+    // エラーメッセージを設定
+    isValid = false;
+  }
+
+  // メッセージのバリデーション
+  if (message.value.trim() === '') {
+    // エラーメッセージを設定
+    isValid = false;
+  }
+
+  if (isValid) {
+    // バリデーションが成功した場合、フォームを送信
+    submitted.value = true;
+  } else {
+    // バリデーションが失敗した場合、エラーメッセージを表示
+  }
 };
+
 </script>
 
 <template>
@@ -34,6 +66,7 @@ const handleSubmit = () => {
           <label for="email" class="block text-sm font-semibold leading-6 text-gray-900">メールアドレス</label>
           <div class="mt-2.5">
             <input v-model="email" type="email" name="email" id="email" autocomplete="email" class="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
+            <p v-if="emailError">{{ emailError }}</p>
           </div>
         </div>
         <div class="sm:col-span-2">
