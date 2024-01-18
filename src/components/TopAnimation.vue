@@ -20,7 +20,7 @@
         <button class="absolute text-white bottom-100 md:bottom-5 right-8 text-lg font-bold self-start hidden md:block" @click="nextCard">
           <span class="next-btn text-xl">Next</span>
         </button>
-        <img  class="w-full object-cover" :src="cards[currentNum].photo" :key="cards[currentNum].id" :alt="cards[currentNum].title" />
+        <img @load="onImageLoaded" class="w-full object-cover" :src="cards[currentNum].photo" :key="cards[currentNum].id" :alt="cards[currentNum].title" />
       </div>
     </div>
   </section>
@@ -40,11 +40,11 @@ const playFowrd = () => {
       ease: "sine.out",
     },
     onComplete: () => {
+      // playreverse();
       currentNum.value++;
       if (currentNum.value >= cards.length) {
         currentNum.value = 0;
       }
-        playreverse();
     },
   });
   tl.to(".mask-1", {
@@ -126,7 +126,7 @@ const nextCard = () => {
   playFowrd();
 };
 const onImageLoaded = () => {
-  setTimeout(() => playreverse(), 100);
+  playreverse();
 };
 
 let startX = 0;
