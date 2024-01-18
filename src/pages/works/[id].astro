@@ -11,14 +11,14 @@ const currentUrl = `../../${worksDetail[id].photo}`;
 ---
 
 <Layout title="Works Detail | Infinity Node">
-<div class="flex mx-auto container gap-4 flex-col md:flex-row p-5">
+<div class="flex mx-auto container gap-4 flex-col md:flex-row p-5 bg-white">
   <div class="img-wrapper flex-1 basis-1/2">
     <img src={currentUrl} alt={worksDetail[id].title} />
   </div>
   <div class="content-wrapper flex-1 basis-1/2">
     <h1 class="text-2xl md:text-3xl mb-5">{worksDetail[id].title}</h1>
-  <p>{worksDetail[id].description}</p>
-  <a href={worksDetail[id].url}>URL : {worksDetail[id].title}</a>
+  <p class="text-sm md:text-md text-black">{worksDetail[id].description}</p>
+  <a class="border-b-1 border-white mt-4" href={worksDetail[id].url}>URL : {worksDetail[id].title}</a>
   </div>
 </div>
 </Layout>
