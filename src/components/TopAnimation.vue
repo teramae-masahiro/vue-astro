@@ -2,8 +2,8 @@
   <section class="max-w-4xl mx-auto px-5">
     <p class="num">{{ cards[currentNum].id + 1 }} / {{ cards.length }}</p>
     <div class="grid">
-      <button class="text-lg font-bold place-self-end" @click="nextCard">
-        <span class="next text-xl">Next >></span>
+      <button class="text-lg md:hidden font-bold place-self-end" @click="nextCard">
+        <span class="next text-xl">Next>></span>
       </button>
     </div>
     <div class="card grid grid-cols-1 md:grid-cols-2 auto-rows-auto bg-white mx-auto">
@@ -11,13 +11,13 @@
         <h2 class="text-xl" id="card-info-title">{{ cards[currentNum].title }}</h2>
         <p class="text-sm" id="card-info-desc">{{ cards[currentNum].description }}</p>
         <a class="grid grid-cols-[max-content_20px] items-center self-center justify-self-end transform transition-transform duration-300 ease-in-out" :href="`/works/${cards[currentNum].id}`">
-          <p class="detail-btn text-xl">More Detail</p>
+          <p class="detail-btn text-xl">Detail</p>
         </a>
       </div>
       <div class="card-photo relative overflow-hidden order-1 md:order-2">
         <div class="mask-1 mask absolute top-0 left-0 transform -translate-y-full h-full w-1/2"></div>
         <div class="mask-2 mask absolute top-0 right-0 transform translate-y-full h-full w-1/2"></div>
-        <button class="absolute text-white bottom-100 md:bottom-5 right-8 text-lg font-bold self-start" @click="nextCard">
+        <button class="absolute text-white bottom-100 md:bottom-5 right-8 text-lg font-bold self-start hidden md:block" @click="nextCard">
           <span class="next-btn text-xl">Next</span>
         </button>
         <img @load="onImageLoaded" class="w-full object-cover" :src="cards[currentNum].photo" :key="cards[currentNum].id" :alt="cards[currentNum].title" />
@@ -27,7 +27,7 @@
 </template>
 
 <script setup>
-import { reactive, ref } from "vue";
+import { reactive, ref, onMounted,onUnmounted } from "vue";
 import { worksDetail } from "../data/detail";
 import gsap from "gsap";
 
@@ -143,7 +143,7 @@ const handleTouchMove = (event) => {
 const handleTouchEnd = () => {
   if (startX - endX > 50) {
     nextCard();
-  } 
+  }
 };
 
 onMounted(() => {
@@ -209,7 +209,8 @@ onUnmounted(() => {
 }
 @media (max-width: 768px) {
   .card-photo::before {
-    clip-path: polygon(0, 0, 0, 0, 0, 0);
+    content: none
+
   }
 }
 .card-photo button {

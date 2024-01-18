@@ -15,12 +15,13 @@ const { title } = Astro.props;
 <body >
 	<div class="container mx-auto">
     <header class= "grid grid-cols-1 md:grid-cols-[200px_1fr] p-4 md:p-8 items-center">
-      <h1 class="text-xl"><a href="/">Infinity Node</a>
+      <h1 class="text-xl mb-5 md:mb-0"><a href="/">Infinity Node</a>
 			</h1>
       <ul class="flex">
-        <li class="mr-12 text-[0.85em]">Price</li>
-        <li class="mr-12 text-[0.85em]">Skills</li>
-        <li class="mr-12 text-[0.85em]">Profile</li>
+        <li class="mr-12 text-[0.85em]"><a href="/profile">Profile</a></li>
+        <li class="mr-12 text-[0.85em]"><a href="/price">Price</a></li>
+        <li class="mr-12 text-[0.85em]"><a href="/contact">Contact</a></li>
+				</li>
         <li class="active mr-12 text-[0.85em]"><a href="https://github.com/teramae-masahiro/" target="_blank">Git hub</a></li>
       </ul>
     </header>

@@ -10,7 +10,7 @@ const { id } = Astro.params;
 const currentUrl = `../../${worksDetail[id].photo}`;
 ---
 
-<Layout title="Works Detail">
+<Layout title="Works Detail | Infinity Node">
 <div class="flex mx-auto container gap-4 flex-col md:flex-row p-5">
   <div class="img-wrapper flex-1 basis-1/2">
     <img src={currentUrl} alt={worksDetail[id].title} />
