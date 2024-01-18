@@ -6,23 +6,23 @@ const email = ref("");
 const message = ref("");
 const submitted = ref(false);
 
-// const handleSubmit = () => {
-//   // フォーム送信後の処理
-//   submitted.value = true;
-//   // ここで他の任意の処理を追加
-// };
+const handleSubmit = () => {
+  // フォーム送信後の処理
+  submitted.value = true;
+  // ここで他の任意の処理を追加
+};
 </script>
 
 <template>
   <div class="isolate bg-white px-6 py-24 sm:py-32 lg:px-8">
     <div class="absolute inset-x-0 top-[-10rem] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[-20rem]" aria-hidden="true">
-<!-- @submit.prevent="handleSubmit" -->
+
     </div>
     <div class="mx-auto max-w-xl text-center">
       <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">お問い合わせ</h2>
       <p class="mt-2 text-lg leading-8 text-gray-600">無料相談受付中！</p>
     </div>
-    <form form  method="POST" data-netlify="true" class="mx-auto mt-16 max-w-xl sm:mt-20">
+    <form @submit.prevent="handleSubmit" method="POST" data-netlify="true" class="mx-auto mt-16 max-w-xl sm:mt-20">
       <div class="grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2">
         <div>
           <label for="name" class="block text-sm font-semibold leading-6 text-gray-900">社名 / お名前</label>
