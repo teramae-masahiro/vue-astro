@@ -5,6 +5,7 @@
       <p class="mt-2 text-lg leading-8 text-gray-600">無料相談受付中！</p>
     </div>
     <form @submit.prevent="handleSubmit" method="POST" data-netlify="true" class="mx-auto mt-16 max-w-xl sm:mt-20">
+       <input type="hidden" name="form-name" value="contact" /> 
       <div class="grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2">
         <div>
           <label for="name" class="block text-sm font-semibold leading-6 text-gray-900">社名 / お名前</label>
