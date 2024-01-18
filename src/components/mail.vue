@@ -73,13 +73,12 @@ import { reactive } from "vue";
 
 const notBlank = () => {
   return (v) => {
-    if (!v || !v.match(/\S/g)) {
+    if (!v.trim()) {
       return "入力してください。";
     }
     return "";
   };
 };
-
 const validateEmail = () => {
   return (v) => {
     const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}]))$/;
