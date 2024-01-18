@@ -119,6 +119,8 @@ const handleSubmit = () => {
   if (isValid) {
     submitted.value = true;
   }
+    console.log("エラーメッセージ:", errorMessagesState);
+  console.log("フォームの状態:", formState);
 };
 </script>
 
