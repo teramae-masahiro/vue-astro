@@ -4,7 +4,7 @@
       <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">お問い合わせ</h2>
       <p class="mt-2 text-lg leading-8 text-gray-600">無料相談受付中！</p>
     </div>
-    <form @submit.prevent="handleSubmit" method="POST" action="/" data-netlify="true" class="mx-auto mt-16 max-w-xl sm:mt-20">
+    <form @submit.prevent="handleSubmit" method="POST" data-netlify="true" class="mx-auto mt-16 max-w-xl sm:mt-20">
       <div class="grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2">
         <div>
           <label for="name" class="block text-sm font-semibold leading-6 text-gray-900">社名 / お名前</label>
@@ -79,15 +79,15 @@ const notBlank = () => {
     return "";
   };
 };
-const validateEmail = () => {
-  return (v) => {
-    const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}]))$/;
-    if (!re.test(String(v).toLowerCase())) {
-      return "有効なメールアドレスを入力してください。";
-    }
-    return "";
-  };
-};
+// const validateEmail = () => {
+//   return (v) => {
+//     const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}]))$/;
+//     if (!re.test(String(v).toLowerCase())) {
+//       return "有効なメールアドレスを入力してください。";
+//     }
+//     return "";
+//   };
+// };
 
 const formState = reactive({
   name: "",
@@ -101,7 +101,7 @@ const errorMessagesState = reactive({
 });
 const validatorsState = {
   name: [notBlank()],
-  email: [notBlank(), validateEmail()],
+  email: [notBlank()],
   message: [notBlank()],
 };
 
