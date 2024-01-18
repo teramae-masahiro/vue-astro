@@ -12,44 +12,35 @@ const validateEmail = () => {
   return re.test(String(email.value).toLowerCase());
 };
 
-
-
 const handleSubmit = () => {
   let isValid = true;
 
-  // 名前のバリデーション
-  if (name.value.trim() === '') {
-    // エラーメッセージを設定
+  if (name.value.trim() === "") {
+    nameError.value = "名前を入力してください。";
     isValid = false;
   }
 
-  // メールアドレスのバリデーション
   if (!validateEmail()) {
-    // エラーメッセージを設定
+    emailError.value = "有効なメールアドレスを入力してください。";
     isValid = false;
   }
 
-  // メッセージのバリデーション
-  if (message.value.trim() === '') {
-    // エラーメッセージを設定
+  if (message.value.trim() === "") {
+    messageError.value = "メッセージを入力してください。";
     isValid = false;
   }
 
   if (isValid) {
-    // バリデーションが成功した場合、フォームを送信
     submitted.value = true;
   } else {
-    // バリデーションが失敗した場合、エラーメッセージを表示
+    submitted.value = false;
   }
 };
-
 </script>
 
 <template>
   <div class="isolate bg-white px-6 py-24 sm:py-32 lg:px-8">
-    <div class="absolute inset-x-0 top-[-10rem] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[-20rem]" aria-hidden="true">
-
-    </div>
+    <div class="absolute inset-x-0 top-[-10rem] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[-20rem]" aria-hidden="true"></div>
     <div class="mx-auto max-w-xl text-center">
       <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">お問い合わせ</h2>
       <p class="mt-2 text-lg leading-8 text-gray-600">無料相談受付中！</p>
@@ -85,7 +76,7 @@ const handleSubmit = () => {
 </template>
 
 <style>
-  .bg-indigo-600 {
-    background: #ECFAEC
-  }
+.bg-indigo-600 {
+  background: #ecfaec;
+}
 </style>
