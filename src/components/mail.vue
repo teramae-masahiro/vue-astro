@@ -102,7 +102,7 @@ const errorMessagesState = reactive({
 });
 const validatorsState = {
   name: [notBlank()],
-  email: [notBlank(),validateEmail()],
+  email: [validateEmail()],
   message: [notBlank()],
 };
 

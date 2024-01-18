@@ -14,7 +14,7 @@ const post = await getBlogsDetail(postId)
 ---
 
 <Layout title="News Detail | Infinity Node">
-<div class="mx-auto container p-4 bg-white">
+<div class="mx-auto container p-6 bg-white">
   <div class="content-wrapper">
     <h1 class="text-xl md:text-2xl mb-5 color-black">{post.title}</h1>
   <div set:html={post.description} />
