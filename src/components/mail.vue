@@ -4,8 +4,8 @@
       <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">お問い合わせ</h2>
       <p class="mt-2 text-lg leading-8 text-gray-600">無料相談受付中！</p>
     </div>
-    <form @submit.prevent="handleSubmit" method="POST" data-netlify="true" class="mx-auto mt-16 max-w-xl sm:mt-20">
-       <input type="hidden" name="form-name" value="contact" /> 
+    <form @submit.prevent="handleSubmit" method="POST" data-netlify="true" name="contact" class="mx-auto mt-16 max-w-xl sm:mt-20">
+       <input type="hidden" name="form-name" value="contact" />
       <div class="grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2">
         <div>
           <label for="name" class="block text-sm font-semibold leading-6 text-gray-900">社名 / お名前</label>
@@ -102,7 +102,7 @@ const errorMessagesState = reactive({
 });
 const validatorsState = {
   name: [notBlank()],
-  email: [notBlank()],
+  email: [notBlank(),validateEmail()],
   message: [notBlank()],
 };
 
@@ -120,8 +120,6 @@ const handleSubmit = () => {
   if (isValid) {
     submitted.value = true;
   }
-    console.log("エラーメッセージ:", errorMessagesState);
-  console.log("フォームの状態:", formState);
 };
 </script>
 
