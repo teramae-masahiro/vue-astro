@@ -71,6 +71,25 @@
 <script setup>
 import { reactive } from "vue";
 
+const notBlank = () => {
+  return (v) => {
+    if (!v || !v.match(/\S/g)) {
+      return "入力してください。";
+    }
+    return "";
+  };
+};
+
+const validateEmail = () => {
+  return (v) => {
+    const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}]))$/;
+    if (!re.test(String(v).toLowerCase())) {
+      return "有効なメールアドレスを入力してください。";
+    }
+    return "";
+  };
+};
+
 const formState = reactive({
   name: "",
   email: "",
@@ -101,25 +120,6 @@ const handleSubmit = () => {
   if (isValid) {
     submitted.value = true;
   }
-};
-
-const notBlank = () => {
-  return (v) => {
-    if (!v || !v.match(/\S/g)) {
-      return "入力してください。";
-    }
-    return "";
-  };
-};
-
-const validateEmail = () => {
-  return (v) => {
-    const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}]))$/;
-    if (!re.test(String(v).toLowerCase())) {
-      return "有効なメールアドレスを入力してください。";
-    }
-    return "";
-  };
 };
 </script>
 
