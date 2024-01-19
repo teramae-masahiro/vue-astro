@@ -1,6 +1,7 @@
 ---
 import { worksDetail } from "../../data/detail";
 import Layout from "../../layouts/Layout.astro"
+import HomeBtn from '../../components/btn.astro';
 export function getStaticPaths() {
   return worksDetail.map(card =>  ({
         params: { id: card.id }
@@ -21,4 +22,5 @@ const currentUrl = `../../${worksDetail[id].photo}`;
   <a class="border-b-1 border-black text-sm md:text-md" href={worksDetail[id].url}>URL : {worksDetail[id].title}</a>
   </div>
 </div>
+<HomeBtn />
 </Layout>

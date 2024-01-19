@@ -1,6 +1,7 @@
 ---
 import Layout from "../../layouts/Layout.astro"
 import { getBlogsDetail, getBlogs } from '../../libs/microcms';
+import HomeBtn from '../../components/btn.astro';
 export async function getStaticPaths() {
   const response = await getBlogs({fields: 'id'});
   return response.contents.map(post => ({
@@ -20,6 +21,7 @@ const post = await getBlogsDetail(postId)
   <div set:html={post.description} />
   </div>
 </div>
+<HomeBtn />
 </Layout>
 
 
