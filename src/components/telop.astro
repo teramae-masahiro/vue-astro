@@ -3,7 +3,7 @@ import { getBlogs } from '../libs/microcms';
 const response = await getBlogs({fields: ['id', 'title'], limit: 3});
 ---
 <section class="fixed w-full bg-white text-black left-0 bottom-0 post-list ">
-<ul class="flex gap-40 ">
+<ul class="flex gap-4 md:gap-40 ">
 {response.contents.map(news => (
   <li>
     <a class="text-sm" href={`news/${news.id}`}>{news.title}</a></li>
@@ -18,7 +18,7 @@ const response = await getBlogs({fields: ['id', 'title'], limit: 3});
     100% { transform: translateX(0%); }
   }
 ul {
-    animation: scroll 40s linear;
+    animation: scroll 20s linear;
   }
 
 .post-list {
