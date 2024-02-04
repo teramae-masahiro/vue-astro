@@ -8,7 +8,7 @@ export const worksDetail = [
     description3: "言語：HTML, CSS, JavaScript, PHP, WordPress, GSAP",
     description4: "サーバーPlesk",
     photo: "assets/works1.jpg",
-    url: "https://laviere-salon.co.jp/"
+    url: "https://laviere-salon.co.jp/",
   },
   {
     id: 1,
@@ -19,7 +19,7 @@ export const worksDetail = [
     description3: "言語：HTML, CSS, JavaScript, PHP, WordPress, GSAP",
     description4: "",
     photo: "assets/works2.jpg",
-    url: "https://kodomonoie.club"
+    url: "https://kodomonoie.club",
   },
   {
     id: 2,
@@ -30,7 +30,7 @@ export const worksDetail = [
     description3: "言語：HTML, CSS, JavaScript, PHP, WordPress,  GSAP",
     description4: "",
     photo: "assets/works3.jpg",
-    url: "https://ueda-sosyoku-bijutsu.com/"
+    url: "https://ueda-sosyoku-bijutsu.com/",
   },
   {
     id: 3,
@@ -41,7 +41,7 @@ export const worksDetail = [
     description3: "言語：HTML, CSS, JavaScript, PHP, WordPress,  GSAP",
     description4: "",
     photo: "assets/works4.jpg",
-    url: "https://chance-football.jp/"
+    url: "https://chance-football.jp/",
   },
   {
     id: 4,
@@ -52,6 +52,17 @@ export const worksDetail = [
     description3: "言語：HTML, CSS,  GSAP",
     description4: "メールはPHP工房、サーバーheteml,GTM，GA4設置",
     photo: "assets/works5.jpg",
-    url: "https://lp.x-house.co.jp/sharehouse/jp/listing2/"
+    url: "https://lp.x-house.co.jp/sharehouse/jp/listing2/",
   },
-]
+  {
+    id: 5,
+    title: "Webマル",
+    description: "LPのコーディングを担当いたしました。",
+    description1: "期間 : 2日",
+    description2: "担当：コーディング",
+    description3: "言語：HTML, CSS,  PHP",
+    description4: "メールはPHP工房",
+    photo: "assets/works6.png",
+    url: "https://fins-next.com/webmaru/",
+  },
+];
