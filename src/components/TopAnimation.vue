@@ -1,5 +1,10 @@
 <template>
   <section class="max-w-4xl mx-auto px-5">
+    <div class="pagination">
+      <button v-for="index in cards.length" :key="index" @click="goToCard(index - 1)" :class="{ active: currentNum === index - 1 }">
+        {{ index }}
+      </button>
+    </div>
     <p class="num">{{ cards[currentNum].id + 1 }} / {{ cards.length }}</p>
     <div class="grid">
       <button class="text-lg md:hidden font-bold place-self-end" @click="nextCard">
@@ -27,7 +32,7 @@
 </template>
 
 <script setup>
-import { reactive, ref, onMounted,onUnmounted } from "vue";
+import { reactive, ref, onMounted, onUnmounted } from "vue";
 import { worksDetail } from "../data/detail";
 import gsap from "gsap";
 
@@ -128,7 +133,9 @@ const nextCard = () => {
 const onImageLoaded = () => {
   playreverse();
 };
-
+const goToCard = (index) => {
+  currentNum.value = index;
+};
 let startX = 0;
 let endX = 0;
 
@@ -209,8 +216,7 @@ onUnmounted(() => {
 }
 @media (max-width: 768px) {
   .card-photo::before {
-    content: none
-
+    content: none;
   }
 }
 .card-photo button {
@@ -230,4 +236,17 @@ onUnmounted(() => {
   color: var(--dark-green);
   font-style: italic;
 }
+.pagination button {
+  margin: 0 5px;
+  padding: 5px 10px;
+  background-color: #f0f0f0;
+  border: none;
+  cursor: pointer;
+}
+
+.pagination button.active {
+  background-color: #666;
+  color: white;
+}
+
 </style>
