@@ -1,10 +1,5 @@
 <template>
   <section class="max-w-4xl mx-auto px-5">
-    <div class="pagination">
-      <button v-for="index in cards.length" :key="index" @click="goToCard(index - 1)" :class="{ active: currentNum === index - 1 }">
-        {{ index }}
-      </button>
-    </div>
     <p class="num">{{ cards[currentNum].id + 1 }} / {{ cards.length }}</p>
     <div class="grid">
       <button class="text-lg md:hidden font-bold place-self-end" @click="nextCard">
@@ -27,6 +22,11 @@
         </button>
         <img @load="onImageLoaded" class="w-full object-cover" :src="cards[currentNum].photo" :key="cards[currentNum].id" :alt="cards[currentNum].title" />
       </div>
+    </div>
+    <div class="pagination">
+      <button v-for="index in cards.length" :key="index" @click="goToCard(index - 1)" :class="{ active: currentNum === index - 1 }">
+        {{ index }}
+      </button>
     </div>
   </section>
 </template>
@@ -248,5 +248,4 @@ onUnmounted(() => {
   background-color: #666;
   color: white;
 }
-
 </style>
