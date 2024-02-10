@@ -136,6 +136,7 @@ const onImageLoaded = () => {
 const goToCard = (index) => {
   currentNum.value = index;
 };
+
 let startX = 0;
 let endX = 0;
 
