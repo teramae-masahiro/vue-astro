@@ -1,6 +1,6 @@
 <template>
   <div class="tabs">
-    <div class="tabs__list ">
+    <div class="tabs__list">
       <div class="tabs__tab" :class="{ tabs__current: i === activeTab }" v-for="(tab, i) in tabs" :key="i" @click="selectTab(i)">{{ tab.label }}</div>
     </div>
     <div class="tabs__content bg-white">
@@ -23,7 +23,7 @@ function selectTab(selectedIndex) {
 }
 </script>
 
-<style >
+<style>
 .tabs__list {
   list-style-type: none;
   padding: 0;
@@ -46,7 +46,7 @@ function selectTab(selectedIndex) {
   border: 1px solid #ccc;
   padding: 15px;
 }
-  .tab-pane_active {
-    display: block;
-  }
+.tab-pane_active {
+  display: block;
+}
 </style>
