@@ -78,7 +78,7 @@ const formState = reactive({
   message: "",
 });
 
-const submitted = ref(false);
+const submitted = ref(true);
 
 const handleSubmit = () => {
   // バリデーションを削除し、フォームが送信されたことを示すために `submitted` を true に設定
