@@ -4,8 +4,8 @@
       <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">お問い合わせ</h2>
       <p class="mt-2 text-lg leading-8 text-gray-600">無料相談受付中！</p>
     </div>
-    <form @submit.prevent="handleSubmit" method="POST" data-netlify="true" name="contact" class="mx-auto mt-16 max-w-xl sm:mt-20">
-       <input type="hidden" name="form-name" value="contact" />
+    <form method="POST" data-netlify="true" name="contact" class="mx-auto mt-16 max-w-xl sm:mt-20">
+      <input type="hidden" name="form-name" value="contact" />
       <div class="grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2">
         <div>
           <label for="name" class="block text-sm font-semibold leading-6 text-gray-900">社名 / お名前</label>
@@ -62,73 +62,44 @@
         </div>
       </div>
       <div class="mt-10">
-        <button type="submit" class="block w-full rounded-md bg-indigo-600 px-3.5 py-2.5 text-center text-sm font-semibold text-black shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">送信する</button>
+        <button type="submit" :disabled="!isFormValid" class="block w-full rounded-md bg-indigo-600 px-3.5 py-2.5 text-center text-sm font-semibold text-black shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">送信する</button>
       </div>
-      <p v-if="submitted">Thank you for your message!</p>
+      <p v-if="showErrorMessage">全てのフィールドを埋めてください。</p>
     </form>
   </div>
 </template>
 
 <script setup>
-import { reactive, ref } from "vue";
-
-const notBlank = () => {
-  return (v) => {
-    if (!v.trim()) {
-      return "入力してください。";
-    }
-    return "";
-  };
-};
-const validateEmail = () => {
-  return (v) => {
-    const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    if (!re.test(String(v).toLowerCase())) {
-      return "有効なメールアドレスを入力してください。";
-    }
-    return "";
-  };
-};
-
+import { reactive, computed, ref } from "vue";
 
 const formState = reactive({
   name: "",
   email: "",
   message: "",
 });
+
 const errorMessagesState = reactive({
   name: [],
   email: [],
   message: [],
 });
-const validatorsState = {
-  name: [notBlank()],
-  email: [validateEmail()],
-  message: [notBlank()],
-};
 
-const submitted = ref(false);
-const handleSubmit = () => {
-  let isValid = true;
+const isFormValid = computed(() => {
+  return formState.name && formState.email && formState.message;
+});
 
-  Object.keys(formState).forEach((key) => {
-    errorMessagesState[key] = validatorsState[key].map((validate) => validate(formState[key])).filter((msg) => msg !== "");
+const showErrorMessage = ref(false);
 
-    if (errorMessagesState[key].length > 0) {
-      isValid = false;
-    }
-  });
-
-  if (isValid) {
-    submitted.value = true;
+watchEffect(() => {
+  if (isFormValid.value) {
+    showErrorMessage.value = false;
+  } else {
+    showErrorMessage.value = true;
   }
-};
+});
 </script>
 
 <style>
-.bg-indigo-600 {
-  background: #ecfaec;
-}
 .formGroup__input-error {
   border-color: red;
 }
