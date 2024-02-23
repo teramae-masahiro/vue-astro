@@ -5,8 +5,6 @@
       <p class="mt-2 text-lg leading-8 text-gray-600">無料相談受付中！</p>
     </div>
     <form @submit.prevent="handleSubmit" method="POST" data-netlify="true" name="contact" class="mx-auto mt-16 max-w-xl sm:mt-20">
-
-
        <input type="hidden" name="form-name" value="contact" />
       <div class="grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2">
         <div>
@@ -74,47 +72,6 @@
 <script setup>
 import { reactive, ref } from "vue";
 
-const formState = reactive({
-  name: "",
-  email: "",
-  message: "",
-});
-
-const errorMessagesState = reactive({
-  name: [],
-  email: [],
-  message: [],
-});
-
-const validatorsState = {
-  name: [notBlank()],
-  email: [validateEmail()],
-  message: [notBlank()],
-};
-
-const submitted = ref(false);
-
-const handleSubmit = () => {
-  let isValid = true;
-
-  // 各フィールドに対してバリデーションを実行
-  Object.keys(formState).forEach((key) => {
-    errorMessagesState[key] = validatorsState[key].map((validate) => validate(formState[key])).filter((msg) => msg !== "");
-
-    if (errorMessagesState[key].length > 0) {
-      isValid = false;
-    }
-  });
-
-  // バリデーションが成功した場合のみ、送信処理を行う
-  if (isValid) {
-    submitted.value = true;
-    // ここでフォームのデータを処理するコードを追加（例: APIへの送信、Netlifyフォームの利用など）
-    // Netlifyを使用している場合、特に何もする必要はありません。
-  }
-};
-
-// バリデーション関数
 const notBlank = () => {
   return (v) => {
     if (!v.trim()) {
@@ -123,7 +80,6 @@ const notBlank = () => {
     return "";
   };
 };
-
 const validateEmail = () => {
   return (v) => {
     const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -133,8 +89,41 @@ const validateEmail = () => {
     return "";
   };
 };
-</script>
 
+
+const formState = reactive({
+  name: "",
+  email: "",
+  message: "",
+});
+const errorMessagesState = reactive({
+  name: [],
+  email: [],
+  message: [],
+});
+const validatorsState = {
+  name: [notBlank()],
+  email: [validateEmail()],
+  message: [notBlank()],
+};
+
+const submitted = ref(false);
+const handleSubmit = () => {
+  let isValid = true;
+
+  Object.keys(formState).forEach((key) => {
+    errorMessagesState[key] = validatorsState[key].map((validate) => validate(formState[key])).filter((msg) => msg !== "");
+
+    if (errorMessagesState[key].length > 0) {
+      isValid = false;
+    }
+  });
+
+  if (isValid) {
+    submitted.value = true;
+  }
+};
+</script>
 
 <style>
 .bg-indigo-600 {
