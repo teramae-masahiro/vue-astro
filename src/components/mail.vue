@@ -70,14 +70,13 @@
 </template>
 
 <script setup>
-import { reactive, computed, ref } from "vue";
+import { reactive, computed, ref, watchEffect } from "vue";
 
 const formState = reactive({
   name: "",
   email: "",
   message: "",
 });
-
 const errorMessagesState = reactive({
   name: [],
   email: [],
