@@ -107,6 +107,7 @@ const validatorsState = {
   message: [notBlank()],
 };
 
+const submitted = ref(false);
 const handleSubmit = () => {
   let isValid = true;
 
