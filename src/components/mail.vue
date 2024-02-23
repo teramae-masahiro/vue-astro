@@ -70,7 +70,7 @@
 </template>
 
 <script setup>
-import { reactive } from "vue";
+import { reactive, ref } from "vue";
 
 const notBlank = () => {
   return (v) => {
