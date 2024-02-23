@@ -72,22 +72,58 @@
 <script setup>
 import { reactive, ref } from "vue";
 
+const notBlank = () => {
+  return (v) => {
+    if (!v.trim()) {
+      return "入力してください。";
+    }
+    return "";
+  };
+};
+const validateEmail = () => {
+  return (v) => {
+    const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    if (!re.test(String(v).toLowerCase())) {
+      return "有効なメールアドレスを入力してください。";
+    }
+    return "";
+  };
+};
+
+
 const formState = reactive({
   name: "",
   email: "",
   message: "",
 });
+const errorMessagesState = reactive({
+  name: [],
+  email: [],
+  message: [],
+});
+const validatorsState = {
+  name: [notBlank()],
+  email: [validateEmail()],
+  message: [notBlank()],
+};
 
-const submitted = ref(true);
-
+const submitted = ref(false);
 const handleSubmit = () => {
-  // バリデーションを削除し、フォームが送信されたことを示すために `submitted` を true に設定
-  submitted.value = true;
+  let isValid = true;
 
-  // ここでフォームのデータを処理するコードを追加（例: APIへの送信、Netlifyフォームの利用など）
+  Object.keys(formState).forEach((key) => {
+    errorMessagesState[key] = validatorsState[key].map((validate) => validate(formState[key])).filter((msg) => msg !== "");
+
+    if (errorMessagesState[key].length > 0) {
+      isValid = false;
+    }
+  });
+
+  if (isValid) {
+    submitted.value = true;
+  }
 };
 </script>
-
 
 <style>
 .bg-indigo-600 {
