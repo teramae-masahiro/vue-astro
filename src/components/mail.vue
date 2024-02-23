@@ -62,9 +62,19 @@
         </div>
       </div>
       <div class="mt-10">
-        <button type="submit" :disabled="!isFormValid" class="block w-full rounded-md bg-indigo-600 px-3.5 py-2.5 text-center text-sm font-semibold text-black shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">送信する</button>
+        <button
+          type="submit"
+          :disabled="!isFormValid"
+          :class="{
+            'opacity-50 cursor-not-allowed': !isFormValid,
+            'opacity-100': isFormValid,
+          }"
+          class="block w-full rounded-md bg-indigo-600 px-3.5 py-2.5 text-center text-sm font-semibold text-black shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+        >
+          送信する
+        </button>
       </div>
-      <p class="text-center text-red pt-8" v-if="showErrorMessage">※全てのフィールドを埋めてください。</p>
+      <p class="text-center text-red-500 pt-8" v-if="showErrorMessage">※全てのフィールドを埋めてください。</p>
     </form>
   </div>
 </template>
